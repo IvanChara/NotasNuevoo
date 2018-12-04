@@ -9,7 +9,7 @@ export default class HomeScreen extends Component{
     render(){
         return (
             <View style = {styles.container}>
-            <Text> Proximamente...... </Text>
+            <Text> Proximamente... </Text>
             </View>
         );
     }
