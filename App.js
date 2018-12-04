@@ -10,6 +10,7 @@ import Login from './Login/Login';
 import SignUp from './Login/SignUp';
 import HomeScreen from './Logueado/HomeScreen';
 import SettingsScreen from './Logueado/SettingsScreen';
+import CalendarScreen from './Logueado/CalendarScreen';
 
 
 const AuthStackNavigator = createStackNavigator({
@@ -28,8 +29,8 @@ const AuthStackNavigator = createStackNavigator({
       )
     }
   },
-  Settings: {
-    screen: SettingsScreen,
+  Calendar: {
+    screen: CalendarScreen,
     navigationOptions: {
       tabBarLabel: 'CALENDAR',
       tabBarIcon: () => (
@@ -52,10 +53,10 @@ const AppStackNavigator = createStackNavigator({
       )
     })
   }
-})/*holalgggggaaa*/ 
+})
 
 const AppDrawerNavigator = createDrawerNavigator({
-  Home: AppStackNavigator //aca va authstack...
+  Home: AppStackNavigator 
 })
 
 export default createSwitchNavigator({

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, TextInput, View, TouchableOpacity, StatusBar, Text, 
 	KeyboardAvoidingView, AsyncStorage} from 'react-native';
+import { Container, Header, Content, Form, Item, Input, Label } from 'native-base';
+
 
 export default class LoginForm extends Component {
 
