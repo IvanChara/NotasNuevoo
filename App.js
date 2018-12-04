@@ -10,7 +10,7 @@ import Login from './Login/Login';
 import SignUp from './Login/SignUp';
 import HomeScreen from './Logueado/HomeScreen';
 import SettingsScreen from './Logueado/SettingsScreen';
-import Notas from './Logueado/Notas';
+
 
 const AuthStackNavigator = createStackNavigator({
   Nuevo: Nuevo,
