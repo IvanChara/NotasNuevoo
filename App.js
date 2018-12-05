@@ -1,7 +1,8 @@
-import {createSwitchNavigator, createStackNavigator, createDrawerNavigator, createBottomTabNavigator} from 'react-navigation'
+import {createSwitchNavigator, createStackNavigator, createDrawerNavigator, createBottomTabNavigator,
+DrawerItems} from 'react-navigation'
 import React, {Component}  from 'react';
-import { StyleSheet, Text, View, Platform,
-TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, Platform,Image, Button,
+TouchableOpacity, SafeAreaView, ScrollView, Dimensions, AsyncStorage} from 'react-native';
 //import Icon from 'react-native-vector-icons/Ionicons'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import AuthLoadingScreen from './Login/AuthLoadingScreen'
@@ -11,6 +12,8 @@ import SignUp from './Login/SignUp';
 import HomeScreen from './Logueado/HomeScreen';
 import SettingsScreen from './Logueado/SettingsScreen';
 import CalendarScreen from './Logueado/CalendarScreen';
+import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs'
+
 
 
 const AuthStackNavigator = createStackNavigator({
@@ -19,25 +22,30 @@ const AuthStackNavigator = createStackNavigator({
   SignUp: SignUp
 })
 
-/**/const AppTabNavigator = createBottomTabNavigator({
+/**/const AppTabNavigator = createMaterialBottomTabNavigator({
   HomeScreen: {
     screen: HomeScreen,
     navigationOptions: {
-      tabBarLabel: 'NOTES',
-      tabBarIcon: () => (
-        <Icon name="sticky-note-o" size={24} /> //ios-albums
+      tabBarLabel: 'Notes',
+      tabBarIcon: ({tintColor}) => (
+        <Icon name="sticky-note-o" size={24} /> 
       )
-    }
+    } 
   },
   Calendar: {
     screen: CalendarScreen,
     navigationOptions: {
-      tabBarLabel: 'CALENDAR',
-      tabBarIcon: () => (
+      tabBarLabel: 'Calendar',
+      tabBarIcon: ({tintColor}) => (
         <Icon name="calendar-o" size={24} /> 
       )
     }
   }
+}, {
+    initialRouteName: 'HomeScreen',
+    activeTintColor: 'white',
+    shifting: true
+  
 })
 const AppStackNavigator = createStackNavigator({
   AppTabNavigator:{
@@ -55,8 +63,21 @@ const AppStackNavigator = createStackNavigator({
   }
 })
 
+const CustomDrawerComponent = (props) => (
+  <SafeAreaView style = {{flex: 1}}>
+    <View style = {{height:150, backgroundColor:'white', alignItems:'center', justifyContent:'center'}}>
+       <Image source={require('./Login/writing.png')} style={{height: 120, width: 120}}/>
+    </View>
+    <ScrollView> 
+      <DrawerItems {...props}/>       
+    </ScrollView>
+  </SafeAreaView>
+)
+
 const AppDrawerNavigator = createDrawerNavigator({
-  Home: AppStackNavigator 
+  Home: AppStackNavigator
+},{
+contentComponent: CustomDrawerComponent
 })
 
 export default createSwitchNavigator({
@@ -65,9 +86,3 @@ export default createSwitchNavigator({
   App: AppDrawerNavigator
 
 })
-
-
-
-
-
-
