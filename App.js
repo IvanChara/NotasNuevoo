@@ -13,6 +13,7 @@ import HomeScreen from './Logueado/HomeScreen';
 import SettingsScreen from './Logueado/SettingsScreen';
 import CalendarScreen from './Logueado/CalendarScreen';
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs'
+import {createMaterialTopTabNavigator} from 'react-navigation'
 
 
 
@@ -22,29 +23,36 @@ const AuthStackNavigator = createStackNavigator({
   SignUp: SignUp
 })
 
-/**/const AppTabNavigator = createMaterialBottomTabNavigator({
+/**/const AppTabNavigator = createMaterialTopTabNavigator({
   HomeScreen: {
     screen: HomeScreen,
     navigationOptions: {
-      tabBarLabel: 'Notes',
+      tabBarLabel: ' ',
       tabBarIcon: ({tintColor}) => (
         <Icon name="sticky-note-o" size={24} /> 
       )
     } 
-  },
+  }, 
   Calendar: {
     screen: CalendarScreen,
     navigationOptions: {
-      tabBarLabel: 'Calendar',
+      tabBarLabel: ' ',
       tabBarIcon: ({tintColor}) => (
         <Icon name="calendar-o" size={24} /> 
       )
     }
-  }
+  } 
 }, {
     initialRouteName: 'HomeScreen',
-    activeTintColor: 'white',
-    shifting: true
+    tabBarPosition: 'bottom',
+    tabBarOptions: {
+      activeTintColor: 'blue',
+      inactiveTintColor: 'grey',
+      style:{
+        backgroundColor: '#f2f2f2'
+      },
+      showIcon: true
+    }
   
 })
 const AppStackNavigator = createStackNavigator({
