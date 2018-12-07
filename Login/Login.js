@@ -4,7 +4,7 @@ import LoginForm from './LoginForm';
 
 
 export default class Login extends React.Component {
- /* constructor(){
+  constructor(){
     super()
    }
    login = () => {
@@ -18,7 +18,7 @@ export default class Login extends React.Component {
       console.warn("error")
     }
   }
-*/
+
 
   render() {
     return (
