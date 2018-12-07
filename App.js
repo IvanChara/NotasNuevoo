@@ -27,16 +27,16 @@ const AuthStackNavigator = createStackNavigator({
   HomeScreen: {
     screen: HomeScreen,
     navigationOptions: {
-      tabBarLabel: ' ',
+      tabBarLabel: 'Notes',
       tabBarIcon: ({tintColor}) => (
         <Icon name="sticky-note-o" size={24} /> 
       )
     } 
-  }, 
+  },
   Calendar: {
     screen: CalendarScreen,
     navigationOptions: {
-      tabBarLabel: ' ',
+      tabBarLabel: 'Calendar' ,
       tabBarIcon: ({tintColor}) => (
         <Icon name="calendar-o" size={24} /> 
       )
@@ -51,7 +51,9 @@ const AuthStackNavigator = createStackNavigator({
       style:{
         backgroundColor: '#f2f2f2'
       },
-      showIcon: true
+      showIcon: true,
+      showLabel: false,
+      indicatorStyle:{opacity: 0} 
     }
   
 })
@@ -69,16 +71,23 @@ const AppStackNavigator = createStackNavigator({
       )
     })
   }
-})
+}) 
 
 const CustomDrawerComponent = (props) => (
   <SafeAreaView style = {{flex: 1}}>
     <View style = {{height:150, backgroundColor:'white', alignItems:'center', justifyContent:'center'}}>
        <Image source={require('./Login/writing.png')} style={{height: 120, width: 120}}/>
     </View>
-    <ScrollView> 
-      <DrawerItems {...props}/>       
+    
+    <ScrollView>  
+      <DrawerItems {...props}/>        
     </ScrollView>
+    <View style={{paddingHorizontal: 10, marginBottom: 10}}> 
+        <TouchableOpacity style={{backgroundColor: '#51E4FE',borderRadius: 30,paddingVertical: 15,alignItems: 'center', paddingHorizontal: 10}} 
+        onPress={this.signOut}> 
+				    <Text style={{color: 'white', fontWeight: 'bold'}}> Sign out </Text> 
+				</TouchableOpacity>
+    </View>
   </SafeAreaView>
 )
 
@@ -86,6 +95,7 @@ const AppDrawerNavigator = createDrawerNavigator({
   Home: AppStackNavigator
 },{
 contentComponent: CustomDrawerComponent
+
 })
 
 export default createSwitchNavigator({
@@ -93,4 +103,9 @@ export default createSwitchNavigator({
   Auth: AuthStackNavigator,
   App: AppDrawerNavigator
 
-})
+}) 
+signOut = async () =>{
+  await AsyncStorage.removeItem('userToken')
+  props.navigation.navigate('AuthLoading')
+
+}
