@@ -15,7 +15,24 @@ import CalendarScreen from './Logueado/CalendarScreen';
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs'
 import {createMaterialTopTabNavigator} from 'react-navigation'
 
+class App extends React.Component {
+   constructor(){
+     super()
+    }
+    signOut = () => {
+      console.log("hola")  
+   this._storeData()
+   this.props.navigation.navigate('AuthLoading')
 
+   }
+    _storeData = async () => {
+     try {
+      await AsyncStorage.removeItem('userToken')  
+     } catch (error) {
+       console.warn("error")
+     }
+   }
+}
 
 const AuthStackNavigator = createStackNavigator({
   Nuevo: Nuevo,
@@ -84,7 +101,7 @@ const CustomDrawerComponent = (props) => (
     </ScrollView>
     <View style={{paddingHorizontal: 10, marginBottom: 10}}> 
         <TouchableOpacity style={{backgroundColor: '#51E4FE',borderRadius: 30,paddingVertical: 15,alignItems: 'center', paddingHorizontal: 10}} 
-        onPress={this.signOut}> 
+        onPress={this.signOut/*.bind(this)*/}> 
 				    <Text style={{color: 'white', fontWeight: 'bold'}}> Sign out </Text> 
 				</TouchableOpacity>
     </View>
@@ -104,8 +121,9 @@ export default createSwitchNavigator({
   App: AppDrawerNavigator
 
 }) 
-signOut = async () =>{
-  await AsyncStorage.removeItem('userToken')
-  props.navigation.navigate('AuthLoading')
 
-}
+/*signOut = async () =>{
+  await AsyncStorage.removeItem('userToken')
+  this.props.navigation.navigate('AuthLoading')
+  console.warn("hola")  
+}*/

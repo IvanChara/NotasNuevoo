@@ -9,10 +9,10 @@ import {
 import {Header, Left, Right,Icon} from 'native-base'
 
 export default class SettingsScreen extends Component{
-   /* signOut = async () =>{
+    signOut = async () =>{
 		await AsyncStorage.removeItem('userToken')
 		this.props.navigation.navigate('AuthLoading')
-	}*/
+	}
     render(){
         return (
             
