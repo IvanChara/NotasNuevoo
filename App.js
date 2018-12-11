@@ -11,6 +11,7 @@ import Login from './Login/Login';
 import SignUp from './Login/SignUp';
 import HomeScreen from './Logueado/HomeScreen';
 import SettingsScreen from './Logueado/SettingsScreen';
+import Nota from './Logueado/Nota';
 import CalendarScreen from './Logueado/CalendarScreen';
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs'
 import {createMaterialTopTabNavigator} from 'react-navigation'
@@ -85,6 +86,14 @@ const AppStackNavigator = createStackNavigator({
             <Icon name= "bars" size= {24} />
           </View>
         </TouchableOpacity>
+      ),
+      headerRight:(
+        <TouchableOpacity>
+          <View style={{paddingHorizontal:10}}> 
+            <Icon name= "edit" size= {24} />
+          </View>
+        </TouchableOpacity>
+        
       )
     })
   }
