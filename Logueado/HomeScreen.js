@@ -14,7 +14,7 @@ export default class HomeScreen extends Component{
            <Nota />
         </View>
         );
-    }//<Text>hola</Text> 
+    }//<Text>hola</Text>  
 
 }
 
