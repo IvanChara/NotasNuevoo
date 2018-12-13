@@ -6,15 +6,16 @@ import {
 } from 'react-native';
 import Nota from './Nota'
 
+
 export default class HomeScreen extends Component{
     render(){
         return (
         <View style = {styles.container}>
            
-           <Nota />
+           <Text>hola</Text>
         </View>
         );
-    }//<Text>hola</Text>  
+    }//<Text>hola</Text>   <Nota />
 
 }
 

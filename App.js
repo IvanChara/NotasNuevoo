@@ -16,24 +16,16 @@ import CalendarScreen from './Logueado/CalendarScreen';
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs'
 import {createMaterialTopTabNavigator} from 'react-navigation'
 
-class App extends React.Component {
-   constructor(){
-     super()
-    }
-    signOut = () => {
-      console.log("hola")  
-   this._storeData()
-   this.props.navigation.navigate('AuthLoading')
 
-   }
-    _storeData = async () => {
-     try {
+_storeData = async () => {
+  try {
       await AsyncStorage.removeItem('userToken')  
-     } catch (error) {
-       console.warn("error")
-     }
-   }
-}
+     } 
+  catch (error) {
+      console.warn("error")
+     } 
+   } 
+
 
 const AuthStackNavigator = createStackNavigator({
   Nuevo: Nuevo,
@@ -54,13 +46,16 @@ const AuthStackNavigator = createStackNavigator({
   Calendar: {
     screen: CalendarScreen,
     navigationOptions: {
+      
       tabBarLabel: 'Calendar' ,
       tabBarIcon: ({tintColor}) => (
         <Icon name="calendar-o" size={24} /> 
       )
-    }
+    } 
   } 
-}, {
+}, 
+
+{
     initialRouteName: 'HomeScreen',
     tabBarPosition: 'bottom',
     tabBarOptions: {
@@ -88,7 +83,7 @@ const AppStackNavigator = createStackNavigator({
         </TouchableOpacity>
       ),
       headerRight:(
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>navigation.navigate('Nota')}>
           <View style={{paddingHorizontal:10}}> 
             <Icon name= "edit" size= {24} />
           </View>
@@ -98,8 +93,9 @@ const AppStackNavigator = createStackNavigator({
     })
   }
 }) 
-
+ 
 const CustomDrawerComponent = (props) => (
+
   <SafeAreaView style = {{flex: 1}}>
     <View style = {{height:150, backgroundColor:'white', alignItems:'center', justifyContent:'center'}}>
        <Image source={require('./Login/writing.png')} style={{height: 120, width: 120}}/>
@@ -107,14 +103,18 @@ const CustomDrawerComponent = (props) => (
     
     <ScrollView>  
       <DrawerItems {...props}/>        
-    </ScrollView>
+    </ScrollView> 
     <View style={{paddingHorizontal: 10, marginBottom: 10}}> 
         <TouchableOpacity style={{backgroundColor: '#51E4FE',borderRadius: 30,paddingVertical: 15,alignItems: 'center', paddingHorizontal: 10}} 
-        onPress={this.signOut/*.bind(this)*/}> 
+        onPress={()=>{
+          this._storeData() 
+          props.navigation.navigate('AuthLoading')
+         } 
+        }>  
 				    <Text style={{color: 'white', fontWeight: 'bold'}}> Sign out </Text> 
-				</TouchableOpacity>
+				</TouchableOpacity>  
     </View>
-  </SafeAreaView>
+  </SafeAreaView> 
 )
 
 const AppDrawerNavigator = createDrawerNavigator({
@@ -122,17 +122,13 @@ const AppDrawerNavigator = createDrawerNavigator({
 },{
 contentComponent: CustomDrawerComponent
 
-})
+}) 
 
 export default createSwitchNavigator({
   AuthLoading: AuthLoadingScreen,
   Auth: AuthStackNavigator,
-  App: AppDrawerNavigator
+  App: AppDrawerNavigator,
+  Nota: Nota
 
 }) 
 
-/*signOut = async () =>{
-  await AsyncStorage.removeItem('userToken')
-  this.props.navigation.navigate('AuthLoading')
-  console.warn("hola")  
-}*/
