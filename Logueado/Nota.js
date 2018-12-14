@@ -7,7 +7,10 @@ import {
 import {createSwitchNavigator, createStackNavigator, createDrawerNavigator, createBottomTabNavigator,
   DrawerItems} from 'react-navigation'
 import Icon from 'react-native-vector-icons/FontAwesome'
-
+import AuthLoadingScreen from '../Login/AuthLoadingScreen'
+import App from '../App'
+import HomeScreen from './HomeScreen'
+//import createSwitchNavigator from '../App'
 
 class Nota extends Component {
     constructor(props) {
@@ -15,7 +18,7 @@ class Nota extends Component {
       this.state = {
         text: 'Useless Multiline Placeholder',
       };
-    } 
+    }  
     render() {
         return (
           <View style = {styles.container}> 
@@ -52,22 +55,40 @@ const styles = StyleSheet.create({
   }
 });
 
+_storeData = async () => {
+  try {
+    await AsyncStorage.setItem('userToken', 'chara');
+  } catch (error) {
+    console.warn("error")
+  }
+} 
 
 const AppStackNavigator = createStackNavigator({
     Nota:{
     screen: Nota,
     navigationOptions: ({navigation}) => ({
-      title: 'Notes',
+      title: 'Note',
       headerRight:(
         <TouchableOpacity onPress={()=>navigation.toggleDrawer()}>
           <View style={{paddingHorizontal:10}}> 
             <Icon name= "plus" size= {24} />
           </View>
         </TouchableOpacity>
+      ),
+      headerLeft:(
+        <TouchableOpacity  onPress={()=>{
+          this._storeData() 
+          navigation.navigate('App')
+        }}>   
+          <View style={{paddingHorizontal:10}}> 
+            <Icon name= "arrow-left" size= {24} />
+          </View>   
+        </TouchableOpacity>
       )
     })
   }
 })   
+
 const CustomDrawerComponent = (props) => (
 
   <SafeAreaView style = {{flex: 1,marginTop: 20}}>   
@@ -89,7 +110,6 @@ const CustomDrawerComponent = (props) => (
   </SafeAreaView> 
 )
 
-
 const AppDrawerNavigator = createDrawerNavigator({
   Home: AppStackNavigator
 },{
@@ -97,8 +117,7 @@ const AppDrawerNavigator = createDrawerNavigator({
 contentComponent: CustomDrawerComponent
 }) 
   export default createSwitchNavigator({
-    App: AppDrawerNavigator
-
+    Drawer: AppDrawerNavigator
   }) 
   
-  
+ 
