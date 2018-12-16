@@ -1,43 +1,54 @@
 import React, {Component} from 'react';
 import {
-    View, Button,
+    View, Button, AsyncStorage,
     Text, KeyboardAvoidingView, TouchableOpacity,
     StyleSheet, TextInput, ScrollView, SafeAreaView, Image
 } from 'react-native';
 import {createSwitchNavigator, createStackNavigator, createDrawerNavigator, createBottomTabNavigator,
   DrawerItems} from 'react-navigation'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import AuthLoadingScreen from '../Login/AuthLoadingScreen'
-import App from '../App'
-import HomeScreen from './HomeScreen'
 //import createSwitchNavigator from '../App'
 
 class Nota extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        text: 'Useless Multiline Placeholder',
-      };
-    }  
+  constructor (props) {
+    super(props);
+    this.state = {
+      nombre: '',
+    }
+ }
+   fun=()=>{
+     const {nombre} = this.state
+     console.warn(nombre)
+   }
     render() {
+     
         return (
           <View style = {styles.container}> 
             <View>
               <TextInput style={{fontSize:20}}
-              {...this.props} 
               editable = {true}
               multiline = {true}
               placeholder = "This note is empty, start editing this"
               placeholderTextColor={'black'}
               enablesReturnKeyAutomatically={true}
-              />  
+              onChangeText={
+                nombre=>this.setState({nombre})  
+                
+              }/> 
+              <TouchableOpacity onPress={this.fun}>
+                <Text>hola</Text>
+              </TouchableOpacity> 
+               
+              
             </View>
+            
           </View>
-          
+              
         );
+        
     }
+  }
 
-}
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#51E4FE',
@@ -55,37 +66,57 @@ const styles = StyleSheet.create({
   }
 });
 
-_storeData = async () => {
+/*_storeData = async () => {
   try {
     await AsyncStorage.setItem('userToken', 'chara');
   } catch (error) {
     console.warn("error")
   }
-} 
+} */ 
 
 const AppStackNavigator = createStackNavigator({
-    Nota:{
+  Nota:{
     screen: Nota,
     navigationOptions: ({navigation}) => ({
-      title: 'Note',
+      
       headerRight:(
-        <TouchableOpacity onPress={()=>navigation.toggleDrawer()}>
-          <View style={{paddingHorizontal:10}}> 
-            <Icon name= "plus" size= {24} />
-          </View>
-        </TouchableOpacity>
+        <View>
+          <TouchableOpacity onPress={()=>navigation.toggleDrawer()}>
+            <View style={{paddingHorizontal:10}}> 
+              <Icon name= "plus" size= {24} />
+            </View>
+          </TouchableOpacity>
+        </View> 
       ),
+    
       headerLeft:(
-        <TouchableOpacity  onPress={()=>{
-          this._storeData() 
-          navigation.navigate('App')
-        }}>   
-          <View style={{paddingHorizontal:10}}> 
-            <Icon name= "arrow-left" size= {24} />
-          </View>   
-        </TouchableOpacity>
+        <View style={{flex: 1, flexDirection: 'row'}}> 
+          <View>
+            
+            <TouchableOpacity  onPress={()=>{
+            // this._storeData()  
+
+              navigation.navigate('App')
+            }}>   
+              <View style={{paddingHorizontal:10}}> 
+                <Icon name= "arrow-left" size= {24} />
+              </View>   
+            </TouchableOpacity>
+          </View>
+          <View style = {{paddingLeft:10}}>
+            <TextInput style={{fontSize:20, fontWeight:'bold'/*, maxWidth:250*/}} 
+                editable = {true}
+                placeholder = "Note"
+                placeholderTextColor={'black'} 
+                maxLength = {15}  
+               /* onChangeText={
+                  
+                }*/
+            />  
+          </View>
+        </View>
       )
-    })
+    })      
   }
 })   
 
