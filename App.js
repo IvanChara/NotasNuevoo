@@ -1,7 +1,7 @@
 import {createSwitchNavigator, createStackNavigator, createDrawerNavigator, createBottomTabNavigator,
 DrawerItems} from 'react-navigation'
 import React, {Component}  from 'react';
-import { StyleSheet, Text, View, Platform,Image, Button,
+import { StyleSheet, Text, View, Platform,Image, 
 TouchableOpacity, SafeAreaView, ScrollView, Dimensions, AsyncStorage} from 'react-native';
 //import Icon from 'react-native-vector-icons/Ionicons'
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -15,7 +15,18 @@ import Nota from './Logueado/Nota';
 import CalendarScreen from './Logueado/CalendarScreen';
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs'
 import {createMaterialTopTabNavigator} from 'react-navigation'
+import * as firebase from 'firebase'
 
+
+/*const firebaseConfig = {
+  apiKey: "AIzaSyBCKZ1tyUWCnBufZ-DD_DOhL6UuXtZgvOA",
+    authDomain: "notes-4016c.firebaseapp.com",
+    databaseURL: "https://notes-4016c.firebaseio.com",
+    projectId: "notes-4016c",
+    storageBucket: "notes-4016c.appspot.com",
+};
+firebase.initializeApp(firebaseConfig);
+*/
 
 _storeData = async () => {
   try {

@@ -3,8 +3,21 @@ import { StyleSheet, TextInput, View, TouchableOpacity, StatusBar, Text,
 	KeyboardAvoidingView, AsyncStorage} from 'react-native';
 import { Container, Header, Content, Form, Item, Input, Label } from 'native-base';
 
+import * as firebase from 'firebase'
+
+
 
 export default class LoginForm extends Component {
+	/*constructor(props){
+		super(props)
+		this.state=({
+			email: '',
+			password: ''
+		})
+	}
+loginUser=(email,password)=>{
+
+}*/
 
 	render() {
 		return ( 
@@ -20,19 +33,26 @@ export default class LoginForm extends Component {
 					autoCapitalize="none"
 					autoCorrect = {false}
 					style= {styles.input}
+					//onChangeText={(email)=>this.setState({email})}
 				/>
 				<TextInput
 					placeholder = "Password"
 					placeholderTextColor = "rgba(255,255,255,1)"
-					secureTextEntry 
+					secureTextEntry  
 					returnKeyType="go"
 					autoCapitalize="none"
 					style= {styles.input}
 					ref = {(input)=>this.passwordInput = input}
+					//onChangeText={(password)=>this.setState({password})}
 				/>
-				<TouchableOpacity style={styles.buttonContainer} /**/onPress={this.props.login}/**/> 
-				<Text style = {styles.buttonText}> Login </Text> 
+				<TouchableOpacity style={styles.buttonContainer} /**/onPress={this.props.login}> 
+				<Text style = {styles.buttonText}> Login </Text>  
 				</TouchableOpacity>
+				{/* <TouchableOpacity style={styles.buttonContainer}onPress={
+					()=>this.loginUser(this.state.email, this.state.password)}> 
+				<Text style = {styles.buttonText}> BDD </Text> 
+				</TouchableOpacity> */}
+					
 			</View>	
 			
 		);

@@ -10,18 +10,10 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 //import createSwitchNavigator from '../App'
 
 class Nota extends Component {
-  constructor (props) {
-    super(props);
-    this.state = {
-      nombre: '',
-    }
- }
-   fun=()=>{
-     const {nombre} = this.state
-     console.warn(nombre)
-   }
+  
+  
     render() {
-     
+      console.warn(this.props.navigation)  
         return (
           <View style = {styles.container}> 
             <View>
@@ -31,13 +23,7 @@ class Nota extends Component {
               placeholder = "This note is empty, start editing this"
               placeholderTextColor={'black'}
               enablesReturnKeyAutomatically={true}
-              onChangeText={
-                nombre=>this.setState({nombre})  
-                
-              }/> 
-              <TouchableOpacity onPress={this.fun}>
-                <Text>hola</Text>
-              </TouchableOpacity> 
+             /> 
                
               
             </View>
@@ -66,14 +52,13 @@ const styles = StyleSheet.create({
   }
 });
 
-/*_storeData = async () => {
+/* _storeData = async () => {
   try {
     await AsyncStorage.setItem('userToken', 'chara');
   } catch (error) {
     console.warn("error")
   }
 } */ 
-
 const AppStackNavigator = createStackNavigator({
   Nota:{
     screen: Nota,
@@ -85,7 +70,7 @@ const AppStackNavigator = createStackNavigator({
             <View style={{paddingHorizontal:10}}> 
               <Icon name= "plus" size= {24} />
             </View>
-          </TouchableOpacity>
+          </TouchableOpacity> 
         </View> 
       ),
     

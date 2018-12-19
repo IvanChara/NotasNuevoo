@@ -15,7 +15,7 @@ export default class Login extends React.Component {
     try {
       await AsyncStorage.setItem('userToken', 'chara');
     } catch (error) {
-      console.warn("error")
+      console.warn("error") 
     }
   }
 

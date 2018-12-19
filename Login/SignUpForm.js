@@ -1,7 +1,28 @@
 import React, { Component } from 'react';
 import { StyleSheet, TextInput, View, TouchableOpacity, StatusBar, Text, KeyboardAvoidingView} from 'react-native';
+import * as firebase from 'firebase'
+
 
 export default class SignUpForm extends Component {
+/*	constructor(props){
+		super(props)
+		this.state=({
+			email: '',
+			password: ''
+		})
+	}
+	signUpUser=(email,password)=>{
+		try{
+			if(this.state.password.length<6){
+				alert("Please enter at least 6 characters")
+				return;
+			}
+			firebase.auth().createUserWithEmailAndPassword(email,password)
+		}
+		catch(error){
+			console.log(error.toString())
+		}
+	}*/
 	render() {
 		return ( 
 			<View  style = {styles.container}>
@@ -17,6 +38,7 @@ export default class SignUpForm extends Component {
                     autoCorrect = {false}
                     keyboardType="email-address"
 					style= {styles.input}
+				//	onChangeText={(email)=>this.setState({email})}
 				/>
 
                 
@@ -29,7 +51,8 @@ export default class SignUpForm extends Component {
 					autoCapitalize="none"
 					autoCorrect = {false}
                     style= {styles.input}
-                    ref = {(input)=>this.passwordInput = input}
+					ref = {(input)=>this.passwordInput = input}
+					//onChangeText={(password)=>this.setState({password})}
 				/>
 				<TextInput
 					placeholder = "Retype Password"
@@ -40,10 +63,10 @@ export default class SignUpForm extends Component {
 					style= {styles.input}
 					ref = {(input)=>this.RpasswordInput = input}
 				/>
-                    <TouchableOpacity style={styles.buttonContainer}> 
+                    <TouchableOpacity style={styles.buttonContainer}
+					/*onPress={()=>this.signUpUser(this.state.email, this.state.password)}*/> 
                     <Text style = {styles.buttonText}> Sign Up </Text> 
                     </TouchableOpacity>
-
                 
 			</View>	
 			
