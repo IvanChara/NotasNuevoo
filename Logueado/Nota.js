@@ -8,10 +8,14 @@ import {createSwitchNavigator, createStackNavigator, createDrawerNavigator, crea
   DrawerItems} from 'react-navigation'
 import Icon from 'react-native-vector-icons/FontAwesome'
 //import createSwitchNavigator from '../App'
+import { ImagePicker } from 'expo';
+
 
 
 class Nota extends Component {
-
+  state = {
+    image: null,
+  };
   /*static navigationOptions = ({ navigation }) => {
     const {state} = navigation;
     return {
@@ -26,13 +30,32 @@ class Nota extends Component {
     const {setParams} = this.props.navigation;
      setParams({ title: titleText })
  }*/
-
+ _pickImage = async () => { 
+  let result = await ImagePicker.launchImageLibraryAsync({
+    allowsEditing: true,
+    aspect: [4, 3],
+  });
+  if (!result.cancelled) {
+    this.setState({ image: result.uri });
+  }
+ }
     render() {
-      
+      let { image } = this.state;
         return (
           <View style = {styles.container}> 
             <View>
-              
+              <TouchableOpacity  onPress={this._pickImage} 
+              style ={{
+                backgroundColor: '#004D80',
+                borderRadius: 30,
+                paddingVertical: 15}}> 
+                  <Text style={{	
+                  textAlign: 'center',
+                  color:'#FFFFFF',
+                  fontWeight: '700'
+                  }}> Insertar imagen </Text>  
+              </TouchableOpacity>
+              {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
               <TextInput style={{fontSize:20}}
               editable = {true}
               multiline = {true}

@@ -8,7 +8,7 @@ import {createSwitchNavigator, createStackNavigator, createDrawerNavigator, crea
   DrawerItems} from 'react-navigation'
 import Icon from 'react-native-vector-icons/FontAwesome'
 //import createSwitchNavigator from '../App'
-
+import Nota from './Nota'
 /* _storeData = async () => {
   try {
     await AsyncStorage.setItem('userToken', 'chara');
@@ -18,14 +18,14 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 } */ 
 const AppStackNavigator = createStackNavigator({
   Nota:{
-    screen: Nota,
+     screen: Nota,
     navigationOptions: ({navigation}) => ({
       
       headerRight:(
         <View>
           <TouchableOpacity onPress={()=>navigation.toggleDrawer()}>
             <View style={{paddingHorizontal:10}}> 
-              <Icon name= "plus" size= {24} />
+              <Icon name= "plus" size= {24} /> 
             </View>
           </TouchableOpacity> 
         </View> 
@@ -90,8 +90,8 @@ const AppDrawerNavigator = createDrawerNavigator({
 contentComponent: CustomDrawerComponent
 }) 
   
-  const switchNavigator = createSwitchNavigator({
+  const SwitchNavigator = createSwitchNavigator({
     Drawer: AppDrawerNavigator
   }) 
-  export default switchNavigator
+  export default SwitchNavigator
  

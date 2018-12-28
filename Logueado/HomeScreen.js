@@ -5,7 +5,7 @@ import {
     StyleSheet, Dimensions
 } from 'react-native';
 import Nota from './Nota'
-
+import Test from './test'
 export default class HomeScreen extends Component{
    
     render(){
@@ -14,7 +14,10 @@ export default class HomeScreen extends Component{
             <View>
                 <Text>Notas...</Text>
             </View>
+            
         </View>
+        
+        
         );
     }
 
