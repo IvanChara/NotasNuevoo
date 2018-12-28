@@ -11,12 +11,11 @@ export default class HomeScreen extends Component{
     render(){
        
         return (
-            
-            <Calendar
+        
+            <CalendarList
             theme={{
                 backgroundColor: '#51E4FE',
                 calendarBackground: '#ffffff',
-                arrowColor: '#51E4FE',
                 monthTextColor: '#51E4FE',
                 textDayFontFamily: 'monospace',
                 textMonthFontFamily: 'monospace',
@@ -24,18 +23,16 @@ export default class HomeScreen extends Component{
                 textMonthFontWeight: 'bold', 
                 textDayFontWeight: 'bold',
                 textDayFontSize: 18,
-                textMonthFontSize: 25,
+                textMonthFontSize: 25, 
                 textDisabledColor: '#51E4FE'    
               }} 
-                current={'2018-12-18'}
-                minDate={'2018-12-1'}
-                maxDate={'2020-12-31'}
+                //current={'2018-12-18'}
                 monthFormat={'yyyy MMM'}
-                hideArrows={false}
-                hideExtraDays={true}
-                hideDayNames={true}
-                onPressArrowLeft={substractMonth => substractMonth()}
-                onPressArrowRight={addMonth => addMonth()}
+                onDayPress={(day) => {console.log('selected day', day)}}
+                hideArrows={true}
+                hideExtraDays={true} 
+                hideDayNames={false} 
+             
 
 
                /*  const d1 = {key:'d1', color: 'red', selectedDotColor: 'blue'};
@@ -60,7 +57,7 @@ export default class HomeScreen extends Component{
                     '2018-12-25': {selected: true,  selectedColor: '#51E4FE'}
                   }}   //Redondeo grande en el día
                 /> 
-                
+                  
             
 
         );
@@ -68,12 +65,3 @@ export default class HomeScreen extends Component{
 
 }
 
-const styles = StyleSheet.create({
-    container: {
-  
-      flex: 1,
-      backgroundColor: '#3498db',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-  });

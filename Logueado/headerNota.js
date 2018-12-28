@@ -9,65 +9,6 @@ import {createSwitchNavigator, createStackNavigator, createDrawerNavigator, crea
 import Icon from 'react-native-vector-icons/FontAwesome'
 //import createSwitchNavigator from '../App'
 
-
-class Nota extends Component {
-
-  /*static navigationOptions = ({ navigation }) => {
-    const {state} = navigation;
-    return {
-      title: '${state.params.title}',
-    };
-  };*/
- /* aviso = ()=>{
-    console.warn(this.props.navigation.title)
-  }*/
-
-  /*changeTitle = (titleText) => {
-    const {setParams} = this.props.navigation;
-     setParams({ title: titleText })
- }*/
-
-    render() {
-      
-        return (
-          <View style = {styles.container}> 
-            <View>
-              
-              <TextInput style={{fontSize:20}}
-              editable = {true}
-              multiline = {true}
-              placeholder = "This note is empty, start editing this"
-              placeholderTextColor={'black'}
-              enablesReturnKeyAutomatically={true}
-             /> 
-               
-              
-            </View>
-            
-          </View>
-              
-        );
-        
-    }
-  }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#51E4FE',
-    flex: 1,
-   // alignItems: 'center',
-  //  justifyContent: 'center',
-  }, 
-  button: {
-    alignItems: 'center',
-    borderColor: '#FFFFFF',
-    borderBottomColor: '#51E4FE',
-    borderWidth: 7,
-    paddingVertical: 10,
-    flex: 1
-  }
-});
-
 /* _storeData = async () => {
   try {
     await AsyncStorage.setItem('userToken', 'chara');
@@ -105,14 +46,14 @@ const AppStackNavigator = createStackNavigator({
             </TouchableOpacity>
           </View>
           <View style = {{paddingLeft:10}}>
-            <TextInput style={{fontSize:20, fontWeight:'bold'}} 
+            <TextInput style={{fontSize:20, fontWeight:'bold'/*, maxWidth:250*/}} 
                 editable = {true}
                 placeholder = "Note"
                 placeholderTextColor={'black'} 
                 maxLength = {15}  
-               /* onChangeText={ 
+                onChangeText={ 
                  aviso
-                }*/
+                }
             />  
           </View>
         </View>
@@ -148,8 +89,9 @@ const AppDrawerNavigator = createDrawerNavigator({
   drawerPosition: 'right',
 contentComponent: CustomDrawerComponent
 }) 
-  export default createSwitchNavigator({
+  
+  const switchNavigator = createSwitchNavigator({
     Drawer: AppDrawerNavigator
   }) 
-  
+  export default switchNavigator
  
