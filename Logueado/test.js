@@ -1,36 +1,32 @@
-import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, Button} from 'react-native';
-import { ImagePicker } from 'expo';
+import React, { Component } from 'react';
+import {
+  AppRegistry,
+  StyleSheet,
+  View,
+} from 'react-native';
 
-export default class Test extends React.Component {
-    state = {
-        image: null,
-      };
+import { SketchCanvas } from '@terrylinla/react-native-sketch-canvas';
+
+export default class test extends Component {
   render() {
-    let { image } = this.state;
-
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Button
-            title="Pick an image from camera roll"
-            onPress={this._pickImage}
-            />
-            {image &&
-            <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+      <View style={styles.container}>
+        <View style={{ flex: 1, flexDirection: 'row' }}>
+          <SketchCanvas
+            style={{ flex: 1 }}
+            strokeColor={'red'}
+            strokeWidth={7}
+          />
         </View>
-      
+      </View>
     );
   }
-  _pickImage = async () => { 
-    let result = await ImagePicker.launchImageLibraryAsync({
-      allowsEditing: true,
-      aspect: [4, 3],
-    });
-
-    console.log(result);
-
-    if (!result.cancelled) {
-      this.setState({ image: result.uri });
-    }
-  };
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#F5FCFF',
+  },
+});
+
+AppRegistry.registerComponent('test', () => test);

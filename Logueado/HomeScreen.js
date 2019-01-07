@@ -12,6 +12,7 @@ export default class HomeScreen extends Component{
         return (
         <View style = {styles.container}>
             <View>
+                  
                 <Text>Notas...</Text>
             </View>
             

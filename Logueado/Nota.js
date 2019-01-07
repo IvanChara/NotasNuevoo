@@ -44,18 +44,16 @@ class Nota extends Component {
         return (
           <View style = {styles.container}> 
             <View>
-              <TouchableOpacity  onPress={this._pickImage} 
-              style ={{
-                backgroundColor: '#004D80',
-                borderRadius: 30,
-                paddingVertical: 15}}> 
-                  <Text style={{	
-                  textAlign: 'center',
-                  color:'#FFFFFF',
-                  fontWeight: '700'
-                  }}> Insertar imagen </Text>  
+              {/*Para poner una foto, anda lindo*/ }
+               <TouchableOpacity  onPress={this._pickImage} style = {styles.botonTest}> 
+                  <Text style={styles.botonText}> Insertar imagen </Text>  
               </TouchableOpacity>
               {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+
+              
+              <TouchableOpacity style ={styles.botonTest}> 
+                  <Text style={styles.botonText}> Insertar audio </Text>  
+              </TouchableOpacity>
               <TextInput style={{fontSize:20}}
               editable = {true}
               multiline = {true}
@@ -88,7 +86,19 @@ const styles = StyleSheet.create({
     borderWidth: 7,
     paddingVertical: 10,
     flex: 1
+  },
+  botonTest: {
+    backgroundColor: '#004D80',
+    borderRadius: 30,
+    paddingVertical: 15
+  },
+  botonText: {
+    textAlign: 'center',
+      color:'#FFFFFF',
+      fontWeight: '700'
   }
+
+
 });
 
 /* _storeData = async () => {

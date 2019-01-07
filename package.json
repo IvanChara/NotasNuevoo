@@ -9,14 +9,19 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@terrylinla/react-native-sketch-canvas": "^0.8.0",
     "expo": "^31.0.2",
     "firebase": "^5.7.0",
     "native-base": "^2.8.1",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.0.tar.gz",
+    "react-native-audio": "^4.3.0",
     "react-native-calendars": "^1.21.0",
     "react-native-image-picker": "^0.27.2",
     "react-native-input-scroll-view": "^1.8.0",
+    "react-native-sketch-view": "^1.0.1",
+    "react-native-sound": "^0.10.9",
+    "react-native-table-component": "^1.2.0",
     "react-navigation": "^2.6.2",
     "react-navigation-material-bottom-tabs": "^0.1.2"
   },
